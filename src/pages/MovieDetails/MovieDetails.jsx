@@ -1,9 +1,9 @@
-import { normalizedArr } from 'helpers/helpers';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 
 import API from 'services/movie-api';
 import defaultImage from '../../img/no-image.jpg';
+import helpers from 'helpers/helpers';
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState({});
@@ -16,12 +16,6 @@ const MovieDetails = () => {
         };
         movieById();
     }, [movieId]);
-
-    const getFullYear = dateString => {
-        const date = new Date(dateString);
-
-        return date.getFullYear();
-    };
 
     return (
         <main>
@@ -37,7 +31,8 @@ const MovieDetails = () => {
                 <div className="info">
                     <h2>
                         {movie.original_title}{' '}
-                        {movie.release_date && `(${getFullYear(movie.release_date)})`}
+                        {movie.release_date &&
+                            `(${helpers.getFullYear(movie.release_date)})`}
                     </h2>
                     {movie.tagline && (
                         <p>
@@ -48,13 +43,13 @@ const MovieDetails = () => {
                     {movie.production_countries && (
                         <p>
                             <b>Country: </b>
-                            {normalizedArr(movie.production_countries)}
+                            {helpers.normalizedArr(movie.production_countries)}
                         </p>
                     )}
                     {movie.genres && (
                         <p>
                             <b>Genres: </b>
-                            {normalizedArr(movie.genres)}
+                            {helpers.normalizedArr(movie.genres)}
                         </p>
                     )}
                     {movie.overview && (
