@@ -5,12 +5,6 @@ const Styled = {
         font-size: 24px;
         margin-bottom: 40px;
     `,
-
-    List: styled.ul`
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px;
-    `
 }
 
 export default Styled

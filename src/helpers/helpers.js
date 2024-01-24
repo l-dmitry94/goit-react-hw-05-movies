@@ -9,6 +9,7 @@ const helpers = {
     },
 
     getFullYear: dateString => {
+        if(!dateString) return "unknown"
         const date = new Date(dateString);
 
         return date.getFullYear();

@@ -6,6 +6,7 @@ const Styled = {
     `,
 
     Image: styled.img`
+        min-height: 268px;
         margin-bottom: 10px;
     `,
 

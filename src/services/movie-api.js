@@ -12,7 +12,7 @@ const API = {
     fetchTrendingMovies: async () => {
         const {
             data: { results },
-        } = await instance.get('/trending/all/day');
+        } = await instance.get('/trending/movie/day');
         return results;
     },
 
@@ -32,6 +32,13 @@ const API = {
         const {
             data: { results },
         } = await instance.get(`/movie/${movieId}/reviews`);
+        return results;
+    },
+
+    fetchMovieByQuery: async query => {
+        const {
+            data: { results },
+        } = await instance.get(`/search/movie?query=${query}`);
         return results;
     },
 };

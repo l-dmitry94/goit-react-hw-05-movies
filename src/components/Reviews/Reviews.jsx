@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import API from 'services/movie-api';
+import Styled from './Reviews.styled';
+
+const { ReviewsList, ReviewAuthor } = Styled;
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
@@ -20,17 +23,23 @@ const Reviews = () => {
     }, [movieId]);
 
     return (
-        <ul>
-            {reviews.map(({ id, author, content }) => (
-                <li key={id}>
-                    <span>
-                        <b>Author: </b>
-                        {author}
-                    </span>
-                    <p>{content}</p>
-                </li>
-            ))}
-        </ul>
+        <>
+            {reviews?.length ? (
+                <ReviewsList>
+                    {reviews.map(({ id, author, content }) => (
+                        <li key={id}>
+                            <ReviewAuthor>
+                                <b>Author: </b>
+                                {author}
+                            </ReviewAuthor>
+                            <p>{content}</p>
+                        </li>
+                    ))}
+                </ReviewsList>
+            ) : (
+                <p>We don't have any reviews for this movie</p>
+            )}
+        </>
     );
 };
 

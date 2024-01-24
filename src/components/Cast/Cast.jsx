@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import API from 'services/movie-api';
 import defaultImage from '../../img/no-image.jpg';
+import Styled from './Cast.styled';
+
+const {CastList, CastItem, CastImage, CastName, CastCharacter} = Styled
 
 const Cast = () => {
     const [cast, setCast] = useState([]);
@@ -21,23 +24,23 @@ const Cast = () => {
     }, [movieId]);
 
     return (
-        <ul>
+        <CastList>
             {cast.map(({ credit_id, profile_path, name, character }) => (
-                <li key={credit_id}>
+                <CastItem key={credit_id}>
                     {profile_path ? (
-                        <img
+                        <CastImage
                             src={`https://image.tmdb.org/t/p/w300${profile_path}`}
                             alt={name}
                         />
                     ) : (
-                        <img src={defaultImage} alt={name} />
+                        <CastImage src={defaultImage} alt={name} />
                     )}
 
-                    <p>{name}</p>
-                    <p>{character}</p>
-                </li>
+                    <CastName>{name}</CastName>
+                    <CastCharacter>{character}</CastCharacter>
+                </CastItem>
             ))}
-        </ul>
+        </CastList>
     );
 };
 
